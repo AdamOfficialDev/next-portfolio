@@ -1,8 +1,10 @@
 // app/layout.tsx
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "./components/layout/Navbar";
+// import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
+import { ThemeProvider } from "./providers/ThemeProvider";
+import Header from "./components/layout/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,9 +24,11 @@ export default function RootLayout({
       <body
         className={`${inter.className} bg-white dark:bg-gray-900 text-gray-900 dark:text-white`}
       >
-        <Navbar />
-        <main className="min-h-screen">{children}</main>
-        <Footer />
+        <ThemeProvider>
+          <Header />
+          <main className="min-h-screen">{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

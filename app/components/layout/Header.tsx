@@ -6,9 +6,10 @@ import { FiMenu, FiX } from "react-icons/fi";
 import ThemeToggle from "../ui/ThemeToggle";
 
 const navigation = [
+  { name: "Home", href: "#" },
   { name: "About", href: "#about" },
-  { name: "Experience", href: "#experience" },
   { name: "Skills", href: "#skills" },
+  { name: "Experience", href: "#experience" },
   { name: "Projects", href: "#projects" },
   { name: "Contact", href: "#contact" },
 ];
@@ -35,7 +36,7 @@ export default function Header() {
     >
       <nav className="container mx-auto px-6 h-16 flex items-center justify-between">
         <a href="#" className="text-2xl font-bold">
-          Logo
+          M A A
         </a>
 
         {/* Desktop Navigation */}

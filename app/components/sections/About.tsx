@@ -77,7 +77,7 @@ export default function About() {
 
               <div className="mt-8">
                 <a
-                  href="/path-to-your-cv.pdf"
+                  href={"assets/cv/CV Muhammad Adam Abdillah.pdf"}
                   download
                   className="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg transition-colors"
                 >

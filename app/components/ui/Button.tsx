@@ -27,15 +27,18 @@ export default function Button({
       whileTap={{ scale: 0.98 }}
       className={classNames(
         "rounded-lg font-medium transition-colors",
-        variant === "primary" && "bg-blue-500 text-white hover:bg-blue-600",
-        variant === "secondary" &&
-          "bg-gray-100 text-gray-900 hover:bg-gray-200",
-        variant === "outline" && "border border-gray-300 hover:border-gray-400",
-        size === "sm" && "px-3 py-1.5 text-sm",
-        size === "md" && "px-4 py-2",
-        size === "lg" && "px-6 py-3 text-lg",
-        disabled && "opacity-50 cursor-not-allowed",
-        className
+        variant === "primary" ? "bg-blue-500 text-white hover:bg-blue-600" : "",
+        variant === "secondary"
+          ? "bg-gray-100 text-gray-900 hover:bg-gray-200"
+          : "",
+        variant === "outline"
+          ? "border border-gray-300 hover:border-gray-400"
+          : "",
+        size === "sm" ? "px-3 py-1.5 text-sm" : "",
+        size === "md" ? "px-4 py-2" : "",
+        size === "lg" ? "px-6 py-3 text-lg" : "",
+        disabled ? "opacity-50 cursor-not-allowed" : "",
+        className !== undefined ? className : ""
       )}
       onClick={onClick}
       type={type}

@@ -47,7 +47,7 @@ export default function Contact() {
     formState: { errors },
   } = useForm<ContactFormInputs>();
 
-  const onSubmit: SubmitHandler<ContactFormInputs> = async (data) => {
+  const onSubmit: SubmitHandler<ContactFormInputs> = async (data: any) => {
     setIsSubmitting(true);
     setSubmitStatus(null);
 

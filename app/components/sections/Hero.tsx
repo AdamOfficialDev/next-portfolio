@@ -86,7 +86,7 @@ export default function Hero({ className = "" }: HeroProps) {
           // Initial render state without animation
           <div>
             <h1 className="text-5xl font-bold mb-6">
-              Hi, I'm <span className="text-blue-600">Your Name</span>
+              Hi, I'm <span className="text-blue-600">Muhammad Adam Abdillah</span>
             </h1>
             <p className="text-xl text-gray-600 mb-8">
               A passionate developer building amazing web experiences

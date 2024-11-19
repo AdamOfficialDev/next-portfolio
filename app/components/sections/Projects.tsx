@@ -37,10 +37,9 @@ const projects: Project[] = [
   // Add more projects as needed
 ];
 
-const categories = [
-  "All",
-  ...new Set(projects.map((project) => project.category)),
-];
+const categories = ["All"].concat(
+  Array.from(new Set(projects.map((project) => project.category)))
+);
 
 export default function Projects() {
   const [activeCategory, setActiveCategory] = useState("All");

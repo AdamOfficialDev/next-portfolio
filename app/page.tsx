@@ -11,7 +11,6 @@ import Skills from "./components/sections/Skills";
 import Experience from "./components/sections/Experience";
 import Projects from "./components/sections/Projects";
 import Contact from "./components/sections/Contact";
-import Newsletter from "./components/sections/Newsletter";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -68,10 +67,6 @@ export default function Home() {
             className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm"
           >
             <Contact />
-          </motion.section>
-
-          <motion.section variants={fadeInUp}>
-            <Newsletter />
           </motion.section>
         </motion.div>
       </main>

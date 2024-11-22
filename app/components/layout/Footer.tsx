@@ -111,15 +111,6 @@ export default function Footer() {
               © {new Date().getFullYear()} Muhammad Adam Abdillah. All rights
               reserved.
             </p>
-
-            <button
-              onClick={scrollToTop}
-              className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-blue-500 transition-colors"
-              aria-label="Scroll to top"
-            >
-              <span>Back to top</span>
-              <FiArrowUp />
-            </button>
           </div>
         </div>
       </div>

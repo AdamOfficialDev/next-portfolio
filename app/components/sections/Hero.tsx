@@ -48,6 +48,7 @@ export default function Hero({ className = "" }: HeroProps) {
   return (
     <section
       className={`h-screen flex items-center justify-center ${className}`.trim()}
+      id="hero"
     >
       <div className="max-w-4xl mx-auto px-4">
         {mounted ? (
@@ -86,7 +87,8 @@ export default function Hero({ className = "" }: HeroProps) {
           // Initial render state without animation
           <div>
             <h1 className="text-5xl font-bold mb-6">
-              Hi, I'm <span className="text-blue-600">Muhammad Adam Abdillah</span>
+              Hi, I'm{" "}
+              <span className="text-blue-600">Muhammad Adam Abdillah</span>
             </h1>
             <p className="text-xl text-gray-600 mb-8">
               A passionate developer building amazing web experiences

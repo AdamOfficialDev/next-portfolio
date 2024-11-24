@@ -6,25 +6,50 @@ import { FiMenu, FiX } from "react-icons/fi";
 import ThemeToggle from "../ui/ThemeToggle";
 
 const navigation = [
-  { name: "Home", href: "#" },
-  { name: "About", href: "#about" },
-  { name: "Skills", href: "#skills" },
-  { name: "Experience", href: "#experience" },
-  { name: "Projects", href: "#projects" },
-  { name: "Contact", href: "#contact" },
+  { name: "Home", href: "#hero", sectionId: "hero" },
+  { name: "About", href: "#about", sectionId: "about" },
+  { name: "Skills", href: "#skills", sectionId: "skills" },
+  { name: "Experience", href: "#experience", sectionId: "experience" },
+  { name: "Projects", href: "#projects", sectionId: "projects" },
+  { name: "Contact", href: "#contact", sectionId: "contact" },
 ];
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("hero");
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
+
+      // Calculate which section is in view
+      const sections = navigation.map((item) => item.sectionId);
+      for (const sectionId of sections) {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          const offset = 100; // Adjust this value based on your needs
+          if (rect.top <= offset && rect.bottom >= offset) {
+            setActiveSection(sectionId);
+            break;
+          }
+        }
+      }
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleNavClick = (href: string) => {
+    setIsMenuOpen(false);
+    // Smooth scroll
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <header
@@ -45,9 +70,25 @@ export default function Header() {
             <a
               key={item.name}
               href={item.href}
-              className="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick(item.href);
+              }}
+              className={`transition-colors relative ${
+                activeSection === item.sectionId
+                  ? "text-blue-500 dark:text-blue-400"
+                  : "text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
+              }`}
             >
               {item.name}
+              {activeSection === item.sectionId && (
+                <motion.div
+                  layoutId="activeSection"
+                  className="absolute -bottom-1 left-0 right-0 h-0.5 bg-blue-500 dark:bg-blue-400"
+                  initial={false}
+                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                />
+              )}
             </a>
           ))}
           <ThemeToggle />
@@ -79,8 +120,15 @@ export default function Header() {
                 <a
                   key={item.name}
                   href={item.href}
-                  className="block text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
-                  onClick={() => setIsMenuOpen(false)}
+                  className={`block transition-colors ${
+                    activeSection === item.sectionId
+                      ? "text-blue-500 dark:text-blue-400"
+                      : "text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
+                  }`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick(item.href);
+                  }}
                 >
                   {item.name}
                 </a>

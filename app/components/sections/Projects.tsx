@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { FiGithub, FiExternalLink } from "react-icons/fi";
+import Image from "next/image";
 
 interface Project {
   title: string;
@@ -16,25 +17,24 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "E-Commerce Platform",
+    title: "Personal Portfolio V1",
     description:
-      "A modern e-commerce platform built with Next.js and Stripe integration",
-    image: "placeholder-image-1",
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Stripe"],
-    github: "https://github.com/yourusername/project1",
-    demo: "https://project1-demo.com",
-    category: "Full Stack",
-  },
-  {
-    title: "Portfolio Website",
-    description: "Personal portfolio website with dark mode and animations",
-    image: "placeholder-image-2",
-    technologies: ["React", "Framer Motion", "Tailwind CSS"],
-    github: "https://github.com/yourusername/project2",
-    demo: "https://project2-demo.com",
+      "First version of a personal portfolio with simple design and contact information.",
+    image: "/assets/images/projects/1.png",
+    technologies: ["HTML", "CSS", "JavaScript"],
+    github: "#",
+    demo: "https://adamofficialdev.github.io/",
     category: "Frontend",
   },
-  // Add more projects as needed
+  {
+    title: "React Movie DB",
+    description: "Movie database app built with React, fetching data from an API.",
+    image: "/assets/images/projects/2.png",
+    technologies: ["React", "Axios", "Bootstrap"],
+    github: "#",
+    demo: "https://adamreactmovie-adamofficialdev.vercel.app/",
+    category: "Frontend",
+  },
 ];
 
 const categories = ["All"].concat(
@@ -86,19 +86,23 @@ export default function Projects() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+                className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow flex flex-col h-full" // Tambahkan flex flex-col dan h-full
               >
                 {/* Project Image */}
-                <div className="aspect-video bg-gray-200 dark:bg-gray-700">
-                  <div className="w-full h-full flex items-center justify-center text-gray-400">
-                    {project.image}
-                  </div>
+                <div className="relative aspect-video w-full">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
                 </div>
 
                 {/* Project Info */}
-                <div className="p-6">
+                <div className="p-6 flex flex-col flex-grow"> {/* Tambahkan flex-grow */}
                   <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-400 mb-4">
+                  <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">
                     {project.description}
                   </p>
 
@@ -114,8 +118,8 @@ export default function Projects() {
                     ))}
                   </div>
 
-                  {/* Links */}
-                  <div className="flex gap-4">
+                  {/* Links - Pindah ke bawah dengan mt-auto */}
+                  <div className="flex gap-4 mt-auto">
                     <a
                       href={project.github}
                       target="_blank"
